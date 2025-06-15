@@ -32,9 +32,19 @@ async def chat(msg: ChatMessage):
         messages=[
     {
         "role": "system",
-        "content": "You are a booking assistant. Extract name, date, and time if user wants to book. Always return complete JSON. Format:\n\n{ \"action\": \"book\", \"name\": \"Charan\", \"date\": \"June 20\", \"time\": \"6am\" }\n\nIf user wants to cancel, return:\n{ \"action\": \"cancel\", \"appointment_id\": 12 }"
+        "content": """You are a booking assistant. Extract name, date, and time if the user wants to book. Always return complete JSON.
 
+        If user wants to book, return:
+        { "action": "book", "name": "Charan", "date": "June 20", "time": "6am" }
+
+        If user wants to cancel by ID, return:
+        { "action": "cancel", "appointment_id": 12 }
+
+        If user wants to cancel by date and time, return:
+        { "action": "cancel", "date": "June 20", "time": "6am" }
+        """
     },
+
     {"role": "user", "content": msg.message}
 ]
     )
