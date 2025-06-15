@@ -11,6 +11,7 @@ This is a full-stack Appointment Booking system with an integrated AI chatbot us
 - ❌ **Cancel Appointments** – Cancel existing appointments.
 - 🤖 **AI Chatbot Integration** – Book or cancel appointments using natural language.
 - 🔐 **Auth-Ready** – Can be extended to use JWT for authentication.
+- 🕒 **Automated Time Slot Generation** – Cron job auto-generates daily time slots.
 
 ---
 
