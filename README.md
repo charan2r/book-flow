@@ -91,7 +91,7 @@ This is a full-stack Appointment Booking system with an integrated AI chatbot us
 - **DELETE** `appointment/cancel/:id` : Cancel a specific appointment.
 
 ### Chatbot
-- **POST** `/api/chat: AI Chatbot conversation.
+- **POST** `/api/chat`: AI Chatbot conversation.
 
 
 ---
