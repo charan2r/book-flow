@@ -5,9 +5,11 @@ import requests
 import json
 from fastapi.middleware.cors import CORSMiddleware
 import dateparser
+from dotenv import load_dotenv
 import os
 
-OPENAI_API_KEY = os.getenv("API_KEY")
+load_dotenv()
+OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
 client = OpenAI(api_key=OPENAI_API_KEY)
 app = FastAPI()
 
