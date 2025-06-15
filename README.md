@@ -107,5 +107,5 @@ This is a full-stack Appointment Booking system with an integrated AI chatbot us
 
 
 ### 🧑‍💻 Author
-  Charan Romi
-  Built with ❤️ for smarter appointment experiences.
+ - Charan Romi
+ - Built with ❤️ for smarter appointment experiences.
