@@ -1,26 +1,29 @@
-# Appointment Booking System
+# 🤖 AI-Powered Appointment Booking System
 
-A simple Appointment Booking System built with the **PERN stack** (PostgreSQL, Express, React, Node.js) that allows users to view available time slots, book appointments, and manage their bookings.
+This is a full-stack Appointment Booking system with an integrated AI chatbot using OpenAI and FastAPI. It allows users to view, book, and cancel appointments via a calendar interface and a chatbot.
 
-## Features
-- **View Available Time Slots**: Display a calendar with available time slots for appointments.
-- **Book an Appointment**: Users can select a date, time slot, and provide their details to book an appointment.
-- **View Booked Appointments**: Users can see a list of their booked appointments.
-- **Cancel an Appointment**: Users can cancel an appointment.
-- **Authentication**: JWT authentication for users to log in, sign up, and access their bookings.
+---
 
-## Tools and Technologies Used
-- **Front-End**:
-  - **React.js**: For building the user interface.
-  - **TailwindCSS**: Utility-first CSS framework for styling.
-  - **Material-UI**: UI library for components like the calendar.
-  - **Axios**: For making API requests to the backend.
-  - **React Router**: For navigation between different pages (Home, My Appointments).
-  - **React Toastify**: For showing notifications to users.
+## 🧩 Features
 
-- **Back-End**:
-  - **Node.js** & **Express.js**: Server-side technologies for building APIs.
-  - **PostgreSQL**: Relational database to store user data, appointments, and available time slots.
+- 📅 **Calendar UI** – View available time slots with React Big Calendar.
+- ✅ **Book Appointments** – Book directly from the calendar interface.
+- ❌ **Cancel Appointments** – Cancel existing appointments.
+- 🤖 **AI Chatbot Integration** – Book or cancel appointments using natural language.
+- 🔐 **Auth-Ready** – Can be extended to use JWT for authentication.
+
+---
+
+## 🏗️ Tech Stack
+
+| Layer     | Technology                                |
+|-----------|------------------------------------------ |
+| Frontend  | React + Tailwind CSS + React Big Calendar |
+| Backend   | Node.js + Express.js                      |
+| Chatbot   | FastAPI (Python) + OpenAI API             |
+| Database  | PostgreSQL                                |
+
+---
 
 ## Steps to Set Up and Run the Project Locally
 
@@ -66,17 +69,43 @@ A simple Appointment Booking System built with the **PERN stack** (PostgreSQL, E
     ```bash
     npm run dev
     ```
+### Bot Service Setup (FastAPI)
+  ````bash
+    cd chat_service
+    python3 -m venv venv
+    source venv/bin/activate
+    pip install -r requirements.txt
+    uvicorn chat_service:app --reload --port 8000
+  ````
 
 ## Endpoints
 
 ### Authentication
-- **POST** `/user/register`: Register a new user.
-- **POST** `/user/login`: Login to an existing account.
+- **POST** `/auth/register`: Register a new user.
+- **POST** `/auth/login`: Login to an existing account.
 
 ### Appointments
 - **GET** `/timeslot/slots`: Fetch all timeslots.
 - **POST** `/appointment/book`: Book an appointment.
-- **GET** `/api/appointments`: Get all booked appointments for a user.
-- **DELETE** `/api/appointments/:id` : Cancel a specific appointment.
+- **GET** `/appointment/view`: Get all booked appointments for a user.
+- **DELETE** `appointment/cancel/:id` : Cancel a specific appointment.
+
+### Chatbot
+- **POST** `/api/chat: AI Chatbot conversation.
 
 
+---
+
+#### 🧠 AI Integration
+ - Uses OpenAI's gpt-3.5-turbo to process user queries.
+ - Handles natural language inputs like:
+   - "Hello, can you book an appointment on June 20 at 2 PM?”
+   - “Cancel my appointment on Jun 15 at 6 AM”
+ -  FastAPI microservice processes intent and communicates with the main backend.
+
+---
+
+
+### 🧑‍💻 Author
+  Charan Romi
+  Built with ❤️ for smarter appointment experiences.
