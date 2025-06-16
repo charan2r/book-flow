@@ -72,4 +72,33 @@ router.delete("/cancel/:id", async (req, res) => {
   }
 });
 
+// Cancel appointment by date and time
+router.delete("/delete", async (req, res) => {
+  const { date, time_slot } = req.body;
+
+  if (!date || !time_slot) {
+    return res.status(400).json({ error: "Date and time slot are required!" });
+  }
+
+  try {
+    const result = await pool.query(
+      "UPDATE appointments SET status = $1 WHERE date = $2 AND time_slot = $3",
+      ["cancelled", date, time_slot]
+    );
+
+    if (result.rowCount === 0) {
+      return res
+        .status(404)
+        .json({
+          error: "No appointment found for the given date and time slot.",
+        });
+    }
+
+    res.json({ message: "Appointment cancelled successfully" });
+  } catch (error) {
+    console.error("Internal Server error", error.message);
+    res.status(500).json({ error: error.message });
+  }
+});
+
 module.exports = router;

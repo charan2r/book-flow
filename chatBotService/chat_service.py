@@ -39,9 +39,6 @@ async def chat(msg: ChatMessage):
         If user wants to book, return:
         { "action": "book", "name": "Charan", "date": "June 20", "time": "6am" }
 
-        If user wants to cancel by ID, return:
-        { "action": "cancel", "appointment_id": 12 }
-
         If user wants to cancel by date and time, return:
         { "action": "cancel", "date": "June 20", "time": "6am" }
         """
@@ -80,9 +77,17 @@ async def chat(msg: ChatMessage):
         
     elif parsed["action"] == "cancel":
         
-        appointment_id = parsed.get("appointment_id")
+        datetime = dateparser.parse(f"{parsed['date']} {parsed['time']}")
+        if not datetime:
+            return {"reply": "Could not parse date or time for cancellation."}
+        formatted_date = datetime.strftime("%Y-%m-%d")
+        formatted_time = datetime.strftime("%H:%M") 
+
         # Send cancel request to Express server
-        cancelResponse = requests.delete(f"{EXPRESS_BASE_URL}/appointment/cancel/{appointment_id}")
+        cancelResponse = requests.delete(
+            f"{EXPRESS_BASE_URL}/appointment/delete",
+            json={"date": formatted_date, "time_slot": formatted_time}
+        )
         if cancelResponse.status_code == 200:
             return {"reply": "Cancellation confirmed!"}
         else:

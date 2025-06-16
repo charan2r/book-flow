@@ -3,7 +3,7 @@ const pool = require("../config/db");
 const moment = require("moment");
 
 const generateSlots = async () => {
-  const howManyDays = 3;
+  const howManyDays = 2;
   const startTime = 6;
   const endTime = 12;
   const interval = 60;
